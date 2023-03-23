@@ -1,0 +1,87 @@
+Hello and welcome to the SuperPy User guide.
+
+By using this program you agree to our terms and services. Please print this file, draw a square and check it. 
+Finally please scan it and email it to: weareinnowayliableforanyharmthatcomestoyouoryourpcwhileusingourproducts@thisisnotactuallyarealemailaddress.com
+
+
+Step 1:
+Unpack the superpy.rar in a folder of your choosing. 
+
+Step 2: 
+Navigate to the directory in your code editor of choice.
+
+Step 3:
+Initialize the program by running the "reset" command.
+
+This is done by typing: python main.py time --reset_all reset_all
+
+This will create all files needed by the program including all .csv files and the .txt file which keeps track of time.
+We strongly advise you not to delete or alter these files in any way, shape or form.
+
+Step 4:
+Play out your wildest dreams of becoming an Inventory Controll Manager. 
+
+
+Basic controlls:
+
+The program has 4 key features:
+Buying items
+Selling items
+Report creation
+Messing around with the fabric of time
+
+1. Buying items:
+
+buy			Activates the buy part of the argparser
+-i, --item 		Name of item (NO SPACES BETWEEN WORDS, use underscore instead)
+-a, --amount 		Amount of item you wan to buy
+-c, --cost 		Cost of 1 piece of the item bought
+-pd, --purchdate	Date on which the item was purchased
+-expd, --expdate	Date on which the item perishes
+
+example: python main.py buy -i tomato -a 5 -c 3.23 -pd 2023-3-3 -expd 2024-11-22
+example: python main.py buy -i french_fries -a 13 -c 11.11 -pd 2023-2-11 expd 2024-2-12
+
+2. Selling items:
+
+sell			Activates the sell part of the argparser
+-i, --item 		Name of item (NO SPACES BETWEEN WORDS, use underscore instead)
+-a, --amount 		Amount of item you wan to sell
+-p, --price 		Price at which 1 piece was sold
+-sd, --selldate		Date on which the item was sold
+
+example: python main.py sell -i tomato -a 3 -p 10.99 -sd 2023-3-23
+example: python main.py sell -i french_fries -a 1 -p 2.99 -sd 2023-5-23
+
+3. Report creation:
+
+report			Activates the report part of the argparser
+-r, --report		Has 4 choices: stock (shows stock on an individual level. Also creates stockreport.csv)
+				       total_stock (shows total stock levels per product. Also creates totalstock.csv)
+				       profit_loss (shows profit or loss over entered time period)
+				       profit_graph (shows a bar chart x-axis = products, y-axis = profit/loss)
+-start, --start_date	1st day of the profit/loss report
+-end, --end_date	last day of the profit/loss report
+
+example: python main.py report -r stock
+example: python main.py report -r total_stock
+example: python main.py report -r profit_loss -start 2023-1-1 -end 2023-12-31
+example: python main.py report -r profit_graph
+
+4. Everything time related
+
+time			Activates the time part of the argparser
+--reset all		Resets everything. inventory.csv, sold.csv and time.txt are cleared and reset. Has 1 option: reset_all
+-a, --advance		Advances time from the percieved current date with x(int) days 
+
+example: python main.py time --reset_all reset_all
+example: python main.py time -a 5
+
+Bonus feature:
+
+Every first day of the month "inventory.csv and sold.csv" are backupped in the \backups folder.
+
+
+
+
+
