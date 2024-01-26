@@ -56,47 +56,60 @@ reporting.add_argument("-end", "--end_date", type=lambda d: datetime.strptime(d,
 timemachine = input.add_parser("time", help="The march of time is relentless")
 
 timemachine.add_argument("--reset_all", choices=["reset_all"], required=False, help="WARNING: EVERYTHING IS RESET: Resets date to today. Inventory and sold are emptied. Only use on start up or when restarting")
+timemachine.add_argument("-d", "--date", type=lambda d: datetime.strptime(d, '%Y-%m-%d'), help="Set date to input date")
 timemachine.add_argument("-a", "--advance", type=int, help="Advance time by x (int) days")
 
 # python main.py --reset_all reset all
 # python main.py time -a 5
 
-args = parser.parse_args()
+if __name__ == "__main__":
+
+    args = parser.parse_args()
 
 
-if args.input == "buy":
-    item = args.item
-    amount = args.amount
-    cost = args.cost
-    purchdate = args.purchdate
-    expdate = args.expdate
-    product.buy(item, amount, cost, purchdate, expdate)
+    if args.input == "buy":
+        item = args.item
+        amount = args.amount
+        cost = args.cost
+        purchdate = args.purchdate
+        expdate = args.expdate
+        product.buy(item, amount, cost, purchdate, expdate)
 
-elif args.input == "sell":
-    item = args.item
-    amount = args.amount
-    price = args.price
-    selldate = args.selldate
-    product.sell(item, amount, price, selldate)
+    elif args.input == "sell":
+        item = args.item
+        amount = args.amount
+        price = args.price
+        selldate = args.selldate
+        product.sell(item, amount, price, selldate)
 
-elif args.input == "report":
-    start_date = args.start_date
-    end_date = args.end_date
-    if args.report == "total_stock":
-        report.total_stock()
-    elif args.report == "profit_loss":
+    elif args.input == "report":
         start_date = args.start_date
         end_date = args.end_date
-        report.profit_loss(start_date, end_date)
-    elif args.report == "stock":
-        report.stock()
-    elif args.report == "profit_graph":
-        report.profit_loss_graph()
+        if args.report == "total_stock":
+            report.total_stock()
+        elif args.report == "profit_loss":
+            start_date = args.start_date
+            end_date = args.end_date
+            report.profit_loss(start_date, end_date)
+        elif args.report == "stock":
+            report.stock()
+        elif args.report == "profit_graph":
+            report.profit_loss_graph()
 
-elif args.input == "time":
-    advance = args.advance
-    if args.reset_all == "reset_all":
-        time_machine.reset_all()
-    elif isinstance(args.advance, int):
-        time_machine.advance_time(advance)
+    elif args.input == "time":
+        advance = args.advance   
+        date = args.date          
+        if args.reset_all == "reset_all":
+            time_machine.reset_all()        
+        elif isinstance(args.advance, int):
+            time_machine.advance_time(advance)
+        elif args.date == date:
+            time_machine.set_date(date)
+
+
+   
+        
+        
+ 
+            
 
