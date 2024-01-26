@@ -26,13 +26,23 @@ class time_machine():
             if not os.path.exists("time"):
                 os.makedirs("time")
             time_path = os.path.join(cwd, "time")
-            day_file = open(time_path + "\day.txt", "w")
+            day_file = open(time_path + "\\day.txt", "w")
             day_file.write(str(datetime.datetime.now().date()))
             print(f'Todays date is {datetime.datetime.now().date()}')
         set_start_date()
 
+    def set_date(date): 
+        datestr = str(date) 
+        datestr = datestr[0:10]     
+        with open('time\\day.txt', "w") as time_file:
+            time_file.write(datestr)
+        print(f'Todays date is {datestr}')
+        start_date = "1985-02-02"        
+        end_date = str(datestr)
+        product.perished_products(start_date, end_date)
+    
     def advance_time(advance):
-        with open('time\day.txt') as time_file:
+        with open('time\\day.txt') as time_file:
             current_date = time_file.readline()
         current_date = datetime.datetime.strptime(current_date, "%Y-%m-%d").date()
         start_delta = current_date
@@ -49,7 +59,7 @@ class time_machine():
             day = start_delta + timedelta(days=i)
             day = day.strftime('%Y-%m-%d')
             all_days.append(day)
-        with open('time\day.txt', "w") as time_file:
+        with open('time\\day.txt', "w") as time_file:
             time_file.writelines(current_date)
         print(f"Advanced time by {advance} days")
         print(f'Todays date is {current_date}')

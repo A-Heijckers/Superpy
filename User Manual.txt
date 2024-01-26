@@ -72,6 +72,7 @@ example: python main.py report -r profit_graph
 
 time			Activates the time part of the argparser
 --reset all		Resets everything. inventory.csv, sold.csv and time.txt are cleared and reset. Has 1 option: reset_all
+-d, --date		Sets the date to input date
 -a, --advance		Advances time from the percieved current date with x(int) days 
 
 example: python main.py time --reset_all reset_all
